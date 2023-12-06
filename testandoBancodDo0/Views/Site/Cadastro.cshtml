@@ -1,0 +1,105 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="~/css/Cadastro.css">
+    <link rel="icon" type="image/ico" href="~/css/logo.ico">
+
+    <title>Aprove Receitas Cadastro</title>
+</head>
+<body>
+    <main id="container">
+        <form id="login_form" action="/Cadastro/Cadastrar" method="post">
+            <!-- FORM HEADER -->
+            <div id="form_header">
+                <h1 style="color: #FE9900;">Cadastro</h1>
+                <i id="mode_icon" class="fa-solid fa-moon"></i>
+            </div>
+
+            <!-- SOCIAL MEDIA LINKS -->
+            <div id="social_media">
+                <!-- FACEBOOK -->
+                <a href="#">
+                    <img src="login/facebook.png" alt="">
+                </a>
+
+                <!-- GOOGLE -->
+                <a href="#">
+                    <img src="login/google.png" alt="">
+                </a>
+            </div>
+
+            <!-- INPUTS -->
+            <div id="inputs">
+                <!-- NAME -->
+                <div class="input-box">
+                    <label for="name">
+                        Name
+                        <div class="input-field">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="name" name="Name">
+                        </div>
+                    </label>
+                </div>
+
+                <!-- EMAIL -->
+                <div class="input-box">
+                    <label for="email">
+                        E-mail
+                        <div class="input-field">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="email" name="Email">
+                        </div>
+                    </label>
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="input-box">
+                    <label for="password">
+                        Senha
+                        <div class="input-field">
+                            <i class="fa-solid fa-key"></i>
+                            <input type="password" id="password" name="Senha">
+                        </div>
+                    </label>
+
+                    <label for="confirmPassword">
+                        Confirmar Senha
+                        <div class="input-field">
+                            <i class="fa-solid fa-key"></i>
+                            <input type="password" id="confirmPassword" name="ConfirmPassword">
+                        </div>
+                    </label>
+
+                    <!-- FORGOT PASSWORD -->
+                    <!--<div id="forgot_password">
+                        <a href="#">
+                            Esqueceu sua senha?
+                        </a>
+                    </div>-->
+                </div>
+
+            <!-- LOGIN BUTTON -->
+            <button type="submit" id="login_button">
+                Cadastrar
+            </button>
+            <!--
+            <button type="submit" id="login_button">
+                Login
+            </button>-->
+        </form>
+    </main>
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="~/js/Cadastro.js"></script>
+</body>
+</html>

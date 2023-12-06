@@ -1,0 +1,100 @@
+﻿@* 
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+ *@
+@{
+}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="~/css/Home.css">
+    <title>Cadastro</title>
+
+
+</head>
+<body style="background-color: #091B26;">
+
+   <div class="scroll-up-btn">
+        <ion-icon name="chevron-up-outline"></ion-icon>
+    </div>
+    <div class="navbar">
+        <div class="max-width">
+            <div class="logo"><a asp-controller="Site" asp-action="Home">Aprove<span> Receitas</span></a></div>
+            <!--<ul class="menu">
+                <li><a asp-controller="Site" asp-action="Home">Inicio</a></li>
+                <li><a href="index.html#about">Sobre Nós</a></li>
+                <li><a href="index.html#teams">Receitas</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>-->
+            <div class="menu-btn">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+        </div>
+    </div>
+
+    <section class="contact" id="contact">
+        <div class="max-width">
+            <h2 class="title" style="color: #FE9900;">Cadastro de Receitas</h2>
+            
+
+
+            <div class="formulario">
+                <form id="login_form" action="/Cadastro/SolicitarReceita" method="post">
+                    <label for="titulo" style="color: #FE9900;">Título:</label>
+                    <input type="text" id="titulo" name="Titulo" required>
+                
+                   
+                    <div>
+                        <label for="ingredientes" style="color: #FE9900;">Ingredientes:</label>
+                        <textarea id="ingredientes" name="Ingredientes" required></textarea>
+                    </div>
+        
+                    <div>
+                        <label for="modo_de_preparo" style="color: #FE9900;">Descricao:</label>
+                        <textarea id="modo_de_preparo" name="Descricao" required></textarea>
+                    </div>
+        
+                    <button type="submit" id="login_button">
+                        Enviar Solicitação
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!--sessão  footer-->
+    <footer>
+
+        <a href="#" style="color: #FE9900;">
+        <ion-icon name="logo-facebook"></ion-icon></a>
+
+        <a href="#" style="color: #FE9900;"><ion-icon name="logo-instagram"></ion-icon></a>
+
+
+        <a href="" style="color: #FE9900;"><ion-icon name="logo-whatsapp"></ion-icon>
+
+        <br>
+        <br>
+
+        <span style="color: #fff;">Criado por <a asp-controller="Site" asp-action="Home" style="color: #FE9900;"><i>Aprove Receitas</i></a> | © Todos os direitos reservados 2023</span>
+    </footer>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <script type="text/javascript" src="~/js/Cadastro.js"></script>
+</body>
+</html>

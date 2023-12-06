@@ -1,0 +1,160 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <script src="https://kit.fontawesome.com/6f925b0522.js" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Macarronada</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/Receitas.css">
+</head>
+<body>
+    <!-- topo-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom" style="background-color: #091B26;">
+        <a class="navbar-brand" asp-controller="Site" asp-action="Home"><span style="color: #FE9900;">Aprove</span> Receitas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" asp-controller="Site" asp-action="Home">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Site" asp-action="Favoritos">Favoritos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Site" asp-action="CadastrarReceita">Criar Receita</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--para telas menores-->
+    <div id="home" class="container-fluid">
+    </div>
+
+    <div id="about" class="container-fluid">
+    </div>
+
+    <div id="services" class="container-fluid">
+    </div>
+    <div class="separador"></div>
+    <!--BODY-->
+    <h1 id="titulo">Macarronada Italiana</h1>
+    <div class="separador"></div>
+    <br>
+    <div class="recipe" id="recipe5">
+        <div class="imageCont3">
+            <img src="~/imagens/img-5.jpg" alt="Imagem 5" class="image">
+            <br>
+            <i class="favorite3 fa-solid fa-heart" data-recipe="5"></i> <!-- Ícone de coração -->
+            <i class="share fa-regular fa-share-from-square"></i>
+        </div>
+    </div>
+    <br>
+    <div class="icon2">
+        <i class="fa-regular fa-clock"> 30 Min</i>
+        <i class="fa-solid fa-utensils "> Facil</i>
+        <i class="fa-solid fa-coins "> Custo Medio</i>
+    </div>
+    <br>
+    <div class="separador"></div>
+    <div class="ingredientes">
+        <h2>Ingredientes</h2>
+        <p>
+            -250 g de macarrão tipo espaguete
+            <br>
+            -10 dentes de alho bem picados
+            <br>
+            -1 xícara de pimentão verde bem picado
+            <br>
+            -2 colheres de sopa de orégano
+            <br>
+            -6 azeitonas verdes (ou de sua preferencia)
+            <br>
+            -6 tomates maduros médios sem pele e sem sementes
+            <br>
+            -1 cebola média ralada
+            <br>
+            -Óleo
+            <br>
+            -Açúcar
+            <br>
+            -2 xícaras médias de queijo parmesão ralado
+        </p>
+    </div>
+    <p class="d-inline-flex gap-1">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="background: #FE9900; border-color: #FE9900;">
+            Comprar ingredientes
+        </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body" style="color: black;">
+            <a href="https://mercado.carrefour.com.br/?gad_source=1&gclid=Cj0KCQiAsburBhCIARIsAExmsu6-Rzy0P0DrgtdWY-5hLWJWokGWgi8Nz0-aDTmq01r64zHEhaoLKTkaAg4-EALw_wcB">Carrefour</a>
+            <a href="https://www.comper.com.br/">Comper</a>
+        </div>
+        <br>
+    </div>
+    <div class="separador"></div>
+    <br>
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/imagens/prop1.jpg" class="d-block w-90 h-auto" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="~/imagens/prop2.jpeg" class="d-block w-90 h-500 " alt="...">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="separador"></div>
+    <br>
+    <div class="preparo">
+        <h2>Modo de Preparo</h2>
+        <ul>1. Coloque a cebola no óleo fervendo e, antes de dourá-la, acrescente o alho.</ul>
+        <ul>2.Deixe até dourar, apague o fogo e reserve.</ul>
+        <ul>3. Coloque os tomates em uma panela com 2 litros de água para ferver.</ul>
+        <ul>4. Quando ferver, retire os tomates e deixe-os esfriar.</ul>
+        <ul>5. Reponha água, se for preciso, e na mesma panela cozinhe o macarrão (al dente ou bem cozido), com sal a gosto.</ul>
+        <ul>6. Escorra o macarrão, mas não lave.</ul>
+        <ul>7. É muito importante não lavar a massa, apenas escorra a água do cozimento em um local seco da pia e reserve em um local seco e protegido de vento.</ul>
+        <ul>8. Retire a casca e as sementes do tomate cozido, pique-o bem pequeno (ou passe no processador), e junte à cebola e ao alho reservados.</ul>
+        <ul>9. Junte também o pimentão, as azeitonas e 1 pitada de açúcar.</ul>
+        <ul>10. Leve ao fogo baixo e deixe cozinhar 15 minutos em panela tampada, mexendo de vez em quando.</ul>
+        <ul>11. Corrija o sal a seu gosto, lembrando que a massa que não foi lavada já possui sal.</ul>
+        <ul>12. Apague o fogo, acrescente 1 xícara de queijo parmesão (espalhando sobre o molho).</ul>
+        <ul>13. Acrescente em seguida o macarrão (ainda quente do cozimento) e o orégano.</ul>
+        <ul>14. Misture e sirva em seguida, acompanhado do queijo parmesão restante.</ul>
+    </div>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body" style="color: black;">
+            <a href="https://mercado.carrefour.com.br/?gad_source=1&gclid=Cj0KCQiAsburBhCIARIsAExmsu6-Rzy0P0DrgtdWY-5hLWJWokGWgi8Nz0-aDTmq01r64zHEhaoLKTkaAg4-EALw_wcB">Carrefour</a>
+            <a href="https://www.comper.com.br/">Comper</a>
+        </div>
+        <br>
+    </div>
+    <div class="separador"></div>
+    <footer>
+        <a href="#" style="color: #FE9900;"><i class="fa-brands fa-facebook"></i></a>
+
+        <a href="#" style="color: #FE9900;"><i class="fa-brands fa-instagram"></i></a>
+
+        <a href="https://wa.me/5567993339665?text=Ol%C3%A1%2C+tudo+bem%3F+tenho+interesse+em+contar+com+os+seus+servi%C3%A7os." style="color: #FE9900;"><i class="fa-brands fa-whatsapp"></i></a>
+        <br>
+        <br>
+        <span style="color: #fff;">Criado por <a href="#about" style="color: #FE9900;"><i>Aprove Receitas</i></a> | © Todos os direitos reservados 2023</span>
+    </footer>
+    <script src="~/js/ReceitasFav.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>

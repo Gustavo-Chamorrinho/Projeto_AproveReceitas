@@ -1,0 +1,145 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="~/css/Home.css">
+    <title>Aprove Receitas</title>
+
+
+</head>
+<body style="background-color: #091B26;">
+
+    <div class="scroll-up-btn">
+        <ion-icon name="chevron-up-outline"></ion-icon>
+    </div>
+    <div class="navbar">
+        <div class="max-width">
+            <div class="logo"><a href="index.html">Aprove<span> Receitas</span></a></div>
+            <ul class="menu">
+                <li><a asp-controller="Site" asp-action="Home">Inicio</a></li>
+                <li><a href="index.html#about">Sobre Nós</a></li>
+                <li><a href="index.html#teams">Receitas</a></li>
+                <li><a asp-controller="Site" asp-action="Cadastro">Cadastro</a></li>
+                <li><a asp-controller="Site" asp-action="Contato">Contato</a></li>
+                <li><a asp-controller="Site" asp-action="Login">Login</a></li>
+            </ul>
+            <div class="menu-btn">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+        </div>
+    </div>
+
+    <section class="contact" id="contact">
+        <div class="max-width">
+            <h2 class="title" style="color: #FE9900;">Contato</h2>
+            <div class="contact-content">
+                <div class="column left">
+                    <div class="text" style="color: #FE9900;">Fale Conosco</div>
+                    <p>Esta página é especialmente dedicada a você, nosso cliente, para que você possa compartilhar suas opiniões, sugestões e feedback sobre o Aprove Receitas. Seu envolvimento é fundamental para aprimorar nossas receitas e serviços, tornando sua experiência culinária ainda mais satisfatória.</p>
+
+                    <div class="icons">
+                        <div class="row">
+                            <ion-icon name="person-outline"></ion-icon>
+                            <div class="info">
+                                <div class="head"><b>Nome</b></div>
+                                <div class="sub-title">Suporte - Aprove Receitas</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <ion-icon name="earth-outline"></ion-icon>
+                            <div class="info">
+                                <div class="head"><b>Endereço</b></div>
+                                <div class="sub-title">Campo Grande, MS</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <ion-icon name="logo-google"></ion-icon>
+                            <div class="info">
+                                <div class="head"><b>Email</b></div>
+                                <div class="sub-title">aprovereceitas@gmail.com</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <ion-icon name="call-outline"></ion-icon>
+                        <div class="info">
+                            <div class="head"><b>Celular</b></div>
+                            <div class="sub-title">(67) 99333-9965</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--column left-->
+                <div class="column rigth">
+                    <div class="text" style="color: #FE9900;">Mensagem</div>
+                    <form action="#">
+                        <div class="fields">
+                            <div class="field name">
+                                <input type="text" placeholder="Nome" required>
+                            </div>
+                            <div class="field email">
+                                <input type="email" placeholder="Email" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="field">
+                                <input type="text" placeholder="Sobrenome" required>
+                            </div>
+                            <div class="field textarea">
+                                <textarea cols="30" rows="10" placeholder="Escrever...." required></textarea>
+                            </div>
+                            <div class="button">
+                                <button type="submit"> <a href="mailto:aprovereceitas@gmail.com" style="color: #FE9900;"> Enviar</a></button>
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--sessão  footer-->
+    <footer>
+
+        <a href="#" style="color: #FE9900;">
+            <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+
+        <a href="#" style="color: #FE9900;"><ion-icon name="logo-instagram"></ion-icon></a>
+
+
+        <a href="" style="color: #FE9900;">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+
+            <br>
+            <br>
+
+            <span style="color: #fff;">Criado por <a asp-controller="Site" asp-action="Home" style="color: #FE9900;"><i>Aprove Receitas</i></a> | © Todos os direitos reservados 2023</span>
+    </footer>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+</body>
+</html>
