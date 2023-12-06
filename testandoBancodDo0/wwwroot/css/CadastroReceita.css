@@ -18,9 +18,6 @@
     /* Gradient */
     --color-gradient: linear-gradient(90deg, var(--color-purple-50), var(--color-purple-100), var(--color-purple-200));
 }
-
-
-
 /* General */
 * {
     font-family: 'Poppins', sans-serif;
@@ -36,13 +33,7 @@
     justify-content: center;
     align-items: center;
     background: var(--color-gradient);
-    
 }
-
-#cad_receitas{
-
-}
-
 
 #login_form {
     display: flex;
@@ -274,7 +265,7 @@ html {
 /*  Home   inicio  */
 .home {
     display: flex;
-    background-color: #091B26;
+    background: url(image/fundo.png) no-repeat;
     background-size: cover;
     height: 100vh;
     color: #fff;
@@ -696,8 +687,41 @@ section {
     }
 
         .contact .rigth form .button button:hover {
-            color: #4169E1;
+            color: #091B26;
             background: none;
+        }
+
+.contact .formulario {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgb(10 15 28 / 80%);
+    border-radius: 10px;
+}
+
+    .contact .formulario label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .contact .formulario input[type="text"], .formulario textarea {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #FE9900;
+        border-radius: 5px;
+    }
+
+    .contact .formulario button {
+        background-color: #091B26;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .contact .formulario button:hover {
+            background-color: #091B26;
         }
 
 /*Sessão Serviços*/

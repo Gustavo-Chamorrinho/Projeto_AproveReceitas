@@ -16,19 +16,25 @@ namespace testandoBancodDo0.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cadastrar([Bind("Name,Email,Senha")] UsuarioModel model)
+        public IActionResult Cadastrar([Bind("Name,Email,Senha")] UsuarioModel model, string confirmPassword)
         {
             try
             {
+                // Verificar se as senhas coincidem
+                if (model.Senha != confirmPassword)
+                {
+                    ModelState.AddModelError(string.Empty, "As senhas não São iguais. Por favor, insira senhas iguais.");
+                    return View("/Views/Site/Cadastro.cshtml", model);
+                }
+
                 if (ModelState.IsValid)
                 {
-                    // gera nome,email e senha para jogar no banco de dados
+                    // gera nome, email e senha para jogar no banco de dados
                     var novoUsuario = new UsuarioModel
                     {
                         Name = model.Name,
                         Email = model.Email,
                         Senha = model.Senha
-                        
                     };
 
                     // Adicione o novo usuário ao banco de dados
@@ -37,12 +43,12 @@ namespace testandoBancodDo0.Controllers
                     // Salva as alterações no banco de dados
                     _dbContext.SaveChanges();
 
-                    // Redireciona para a página login apos cadastrar
+                    // Redireciona para a página login após cadastrar
                     return RedirectToAction("Login", "Site");
                 }
 
                 // Se houver erros de validação, retorna a página de cadastro com os erros
-                Console.WriteLine("Deu erro aqui camarada"); //ajustar essa mensagem de erro.
+                Console.WriteLine("Deu erro aqui camarada"); // ajustar essa mensagem de erro.
                 return View("/Views/Site/Cadastro.cshtml", model);
             }
             catch (Exception ex)
@@ -52,6 +58,8 @@ namespace testandoBancodDo0.Controllers
                 return View();
             }
         }
+
+
 
 
         [HttpPost]

@@ -42,7 +42,7 @@ namespace testandoBancodDo0.Controllers
                     else
                     {
                         //aqui exibe a mensagem que joga lá para o html na parte do If fazendo um foreach e mostrando os erros.
-                        ModelState.AddModelError(string.Empty, "Credenciais inválidas. Tente novamente.");
+                        ModelState.AddModelError(string.Empty, "Informações Inválidas. Tente novamente.");
                         ModelState.AddModelError(string.Empty, "Verifique as informações digitadas.");
                         return View("~/Views/Site/Login.cshtml",model);
                     }
