@@ -39,6 +39,17 @@
         </div>
     </div>
 
+    <div class="UsuarioLogado">
+
+        @if (Context.Session.GetString("UserId") != null)
+        {
+            <a href="#">
+                <li style="color:white; font-size:22px;"><span style="color:white; font-size:22px;">Olá, @Context.Session.GetString("UserName")!</span></li>
+            </a>
+        }
+
+    </div>
+
     <section class="contact" id="contact">
         <div class="max-width">
             <h2 class="title" style="color: #FE9900;">Cadastro de Receitas</h2>

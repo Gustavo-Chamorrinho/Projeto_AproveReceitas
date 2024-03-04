@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
+using System.Security.Claims;
 using testandoBancodDo0.Context;
 using testandoBancodDo0.Models;
 
@@ -15,6 +17,7 @@ namespace testandoBancodDo0.Controllers
             _dbContext = dbContext;
         }
 
+
         [HttpPost]
         public IActionResult Cadastrar([Bind("Name,Email,Senha")] UsuarioModel model, string confirmPassword)
         {
@@ -26,6 +29,22 @@ namespace testandoBancodDo0.Controllers
                     ModelState.AddModelError(string.Empty, "As senhas não São iguais. Por favor, insira senhas iguais.");
                     return View("/Views/Site/Cadastro.cshtml", model);
                 }
+
+                //Verifica se ja existe um email parecido
+                var UsuarioExistente = _dbContext.usuarios.FirstOrDefault(u => u.Email == model.Email);
+                if (UsuarioExistente != null)
+                {
+                    ModelState.AddModelError(string.Empty, "O E-mail digitado já esta sendo utilizado, Tente outro novamente.");
+                    return View("/Views/Site/Cadastro.cshtml", model);
+                }
+
+                //verifica se contem caracter especial
+                if (!CaracterEspecial(model.Senha))
+                {
+                    ModelState.AddModelError(string.Empty, "As senhas precisam conter um caracter especial, Ex:'@'");
+                    return View("/Views/Site/Cadastro.cshtml", model);
+                }
+
 
                 if (ModelState.IsValid)
                 {
@@ -59,6 +78,13 @@ namespace testandoBancodDo0.Controllers
             }
         }
 
+        //funçao para caracteres especiais
+        public bool CaracterEspecial(string senha)
+        {
+            char[] caracteresEspeciais = { '@', '#', '$', '%', '&', '*', '(', ')', '[', ']', '{', '}', '!', '?' };
+            return senha.Any(c => caracteresEspeciais.Contains(c));
+        }
+
 
 
 
@@ -69,12 +95,16 @@ namespace testandoBancodDo0.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    // gera nome,email e senha para jogar no banco de dados
+                    var usuarioID = HttpContext.Session.GetString("UserId");
+
+
+                    // gera titulo,descriçao e ingredientes para jogar no banco de dados
                     var novaReceita = new ReceitaModel
                     {
                         Titulo = model.Titulo,
-                        Descricao= model.Descricao,
-                        Ingredientes = model.Ingredientes
+                        Descricao = model.Descricao,
+                        Ingredientes = model.Ingredientes,
+                        IdUsuario = usuarioID
 
                     };
 

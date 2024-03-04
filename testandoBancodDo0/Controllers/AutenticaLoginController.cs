@@ -4,6 +4,7 @@ using testandoBancodDo0.Data;
 using System;
 using System.Linq;
 using testandoBancodDo0.Context;
+using Microsoft.AspNetCore.Http;
 
 //adicionado recentemente (validação para login no banco)
 
@@ -36,6 +37,14 @@ namespace testandoBancodDo0.Controllers
 
                     if (usuario != null)
                     {
+                        //armazenamento de nome do usuario que fizer login
+                        HttpContext.Session.SetString("UserId", usuario.Id.ToString());
+                        HttpContext.Session.SetString("UserName", usuario.Name);
+                       // Console.WriteLine($"O valor de UserId na sessão é: {usuario.Id}"); //teste para verificar o Id
+
+                        string UsuarioLogado = HttpContext.Session.GetString("UserName");
+                        ViewBag.UserName = UsuarioLogado;
+
                         // Se as credenciais forem válidas, redireciona para a página principal
                         return RedirectToAction("Home", "Site");
                     }

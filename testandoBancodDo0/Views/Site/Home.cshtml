@@ -33,6 +33,19 @@
                 <li><a asp-controller="Site" asp-action="Contato">Contato</a></li>
                 <li><a asp-controller="Site" asp-action="Login">Login</a></li>
             </ul>
+
+            <div class ="UsuarioLogado">
+
+                @if (Context.Session.GetString("UserId") != null)
+                {
+                    <a href="#">
+                        <li style="color:white; font-size:22px;"><span style="color:white; font-size:22px;">Olá, @Context.Session.GetString("UserName")!</span></li>
+                    </a>
+                }
+
+            </div>
+
+
             <div class="menu-btn">
                 <ion-icon name="menu-outline"></ion-icon>
             </div>
