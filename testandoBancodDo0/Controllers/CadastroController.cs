@@ -55,6 +55,8 @@ namespace testandoBancodDo0.Controllers
                         Email = model.Email,
                         Senha = model.Senha
                     };
+                    //adicionando hash na senha do usuario
+                    novoUsuario.SetSenhaHash();
 
                     // Adicione o novo usuário ao banco de dados
                     _dbContext.usuarios.Add(novoUsuario);
