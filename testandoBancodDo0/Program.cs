@@ -16,6 +16,9 @@ builder.Services.AddDbContext<AproveDbContext>(options =>
 });
 
 // Adicionar o serviço de sessão
+
+
+
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {

@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using testandoBancodDo0.Helper;
 
 namespace testandoBancodDo0.Models
 {
-    public class UsuarioModel
+    public class UsuarioModel 
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

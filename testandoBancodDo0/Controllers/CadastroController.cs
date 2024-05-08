@@ -30,6 +30,13 @@ namespace testandoBancodDo0.Controllers
                     return View("/Views/Site/Cadastro.cshtml", model);
                 }
 
+                //senha com 6 caracteres
+                if (model.Senha.Length < 6)
+                {
+                    ModelState.AddModelError(string.Empty, "As senhas precisam ter pelo menos 6 caracteres");
+                    return View("/Views/Site/Cadastro.cshtml", model);
+                }
+
                 //Verifica se ja existe um email parecido
                 var UsuarioExistente = _dbContext.usuarios.FirstOrDefault(u => u.Email == model.Email);
                 if (UsuarioExistente != null)
@@ -55,10 +62,10 @@ namespace testandoBancodDo0.Controllers
                         Email = model.Email,
                         Senha = model.Senha
                     };
-                    //adicionando hash na senha do usuario
+                    
                     novoUsuario.SetSenhaHash();
 
-                    // Adicione o novo usuário ao banco de dados
+                    // Adiciona o novo usuário ao banco de dados
                     _dbContext.usuarios.Add(novoUsuario);
 
                     // Salva as alterações no banco de dados
@@ -91,7 +98,7 @@ namespace testandoBancodDo0.Controllers
 
 
         [HttpPost]
-        public IActionResult SolicitarReceita([Bind("Titulo,Descricao,Ingredientes")] ReceitaModel model)
+        public IActionResult SolicitarReceita([Bind("Titulo,Descricao,Ingredientes")] ReceitaModel model, IFormFile imagem)
         {
             try
             {
@@ -99,18 +106,26 @@ namespace testandoBancodDo0.Controllers
                 {
                     var usuarioID = HttpContext.Session.GetString("UserId");
 
-
+                    if(imagem != null && imagem.Length > 0)
+                    {
+                        using (var ms = new MemoryStream())
+                        {
+                            imagem.CopyTo(ms);
+                            model.imagem = ms.ToArray();
+                        }
+                    }
                     // gera titulo,descriçao e ingredientes para jogar no banco de dados
                     var novaReceita = new ReceitaModel
                     {
                         Titulo = model.Titulo,
                         Descricao = model.Descricao,
                         Ingredientes = model.Ingredientes,
-                        IdUsuario = usuarioID
+                        IdUsuario = usuarioID,
+                        imagem = model.imagem
 
                     };
 
-                    // Adicione o novo usuário ao banco de dados
+                    // Adiciona o  usuário ao banco de dados
                     _dbContext.receitas.Add(novaReceita);
 
                     // Salva as alterações no banco de dados
