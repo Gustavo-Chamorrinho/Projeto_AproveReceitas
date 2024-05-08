@@ -39,5 +39,15 @@ namespace testandoBancodDo0.Controllers
             return View();
         }
 
+        public IActionResult TelaAdm()
+        {
+            return View();
+        }
+
+        public IActionResult ExibirSenha()
+        {
+            return View();
+        }
+
     }
 }

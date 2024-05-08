@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace testandoBancodDo0 // Substitua pelo nome do seu namespace
+namespace testandoBancodDo0 
 {
     [Route("Home/[controller]")]
     [ApiController]
@@ -12,8 +12,8 @@ namespace testandoBancodDo0 // Substitua pelo nome do seu namespace
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] TokenRecaptcha token)
         {
-            // Chave secreta do reCAPTCHA
-            string secretKey = "6LdrooUpAAAAAKUhQGQn1YaHtEPVy6_gmdR8JFBq"; // Substitua pela sua chave secreta
+            
+            string secretKey = "6LdrooUpAAAAAKUhQGQn1YaHtEPVy6_gmdR8JFBq"; // chave secretea do site
 
             using (var httpClient = new HttpClient())
             {
@@ -24,7 +24,7 @@ namespace testandoBancodDo0 // Substitua pelo nome do seu namespace
                     new KeyValuePair<string, string>("response", token.Token)
                 }));
 
-                // Verificar a resposta do Google reCAPTCHA
+                // Verifica a resposta do Google reCAPTCHA
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
@@ -32,7 +32,7 @@ namespace testandoBancodDo0 // Substitua pelo nome do seu namespace
 
                     if (result.Success)
                     {
-                        // Token reCAPTCHA válido, faça o que for necessário aqui
+                        // Token reCAPTCHA válido
                         return Ok(new { success = true, message = "Token reCAPTCHA válido." });
                     }
                 }

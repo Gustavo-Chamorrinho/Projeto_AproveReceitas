@@ -57,7 +57,7 @@
 
 
             <div class="formulario">
-                <form id="cad_receitas" action="/Cadastro/SolicitarReceita" method="post">
+                <form id="cad_receitas" action="/Cadastro/SolicitarReceita" method="post" enctype="multipart/form-data">
                     <label for="titulo" style="color: #FE9900;">Título:</label>
                     <input type="text" id="titulo" name="Titulo" required>
                 
@@ -70,6 +70,9 @@
                     <div>
                         <label for="modo_de_preparo" style="color: #FE9900;">Descricao:</label>
                         <textarea id="modo_de_preparo" name="Descricao" required></textarea>
+                    </div>
+                    <div>
+                        <input type="file" name="imagem" id="imagem">
                     </div>
         
                     <button type="submit" id="login_button">
@@ -97,6 +100,9 @@
 
         <span style="color: #fff;">Criado por <a asp-controller="Site" asp-action="Home" style="color: #FE9900;"><i>Aprove Receitas</i></a> | © Todos os direitos reservados 2023</span>
     </footer>
+
+    <script type="text/javascript" src="~/js/ValidarImagem.js "></script>
+
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

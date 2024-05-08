@@ -6,21 +6,22 @@ namespace testandoBancodDo0.Models
     [Table("Receita")]
     public class ReceitaModel
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string? Id { get; set; }
 
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public string? Id { get; set; }
+        public string Titulo { get; set; }
 
-    public string Titulo { get; set; }
+         public string Descricao {  get; set; }
 
-     public string Descricao {  get; set; }
-
-     public string Ingredientes { get; set; }
+         public string Ingredientes { get; set; }
 
     
-    public string ?IdUsuario {  get; set; }
+        public string ?IdUsuario {  get; set; }
 
-    [ForeignKey(nameof(IdUsuario))]
-    public virtual UsuarioModel ?Usuario { get; set; }
+        [ForeignKey(nameof(IdUsuario))]
+        public virtual UsuarioModel ?Usuario { get; set; }
+
+        public byte[]? imagem { get; set; }
     }
 }
