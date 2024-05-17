@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using System;
-using System.Linq;
 using System.Security.Cryptography;
 
 namespace testandoBancodDo0.Controllers
 {
-    //AREA DE TESTES/// possivel nova funçao do site.
     public class LoginAdmController : Controller
     {
         public IActionResult Index()
@@ -16,28 +15,33 @@ namespace testandoBancodDo0.Controllers
         [HttpPost]
         public IActionResult Entrar(string username, string password)
         {
-            return RedirectToAction("ExibirSenha", "Site");
+            if (username == "Aprove" && password == "aprove")
+            {
+                return RedirectToAction("ExibirSenha", "LoginAdm");
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Usuário não encontrado, talvez você não tenha permissão para essa página.";
+                return RedirectToAction("TelaAdm", "Site");
+            }
         }
 
         public IActionResult ExibirSenha()
         {
-            
             var senhaExpirou = HttpContext.Session.GetString("senhaExpirou");
             if (string.IsNullOrEmpty(senhaExpirou) || DateTime.Parse(senhaExpirou) < DateTime.Now.AddHours(-24))
             {
-                
                 var senha = GerarSenha(8);
-                
                 HttpContext.Session.SetString("senhaExpirou", DateTime.Now.ToString());
-                
+                HttpContext.Session.SetString("senha", senha);
                 ViewBag.Senha = senha;
-                return View("/Views/Site/ExibirSenha.cshtml");
             }
             else
             {
-                
-                return View("/Views/Site/ExibirSenha.cshtml");
+                ViewBag.Senha = HttpContext.Session.GetString("senha");
             }
+
+            return View("/Views/Site/ExibirSenha.cshtml");
         }
 
         private string GerarSenha(int tamanho)
@@ -57,3 +61,5 @@ namespace testandoBancodDo0.Controllers
         }
     }
 }
+
+

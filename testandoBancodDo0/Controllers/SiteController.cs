@@ -49,5 +49,10 @@ namespace testandoBancodDo0.Controllers
             return View();
         }
 
+        public IActionResult AreaUsuario()
+        {
+            return View();
+        }
+
     }
 }

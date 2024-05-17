@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+   
+}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Usuário</title>
+    <link href="~/css/AreaUsuario.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="container">
+        <h2>Área do Usuário</h2>
+        <div class="info">
+            <label for="nome">Nome:</label>
+            <div class="UsuarioLogado">
+                @if (Context.Session.GetString("UserId") != null)
+                {
+                    <span style="color:white; font-size:20px;">@Context.Session.GetString("UserName")</span> 
+                }
+            </div>
+            <!--<p id="nome">Fulano de Tal</p>-->
+        </div>
+        <div class="info">
+            <label for="email">E-mail:</label>
+            <div class="UsuarioLogado">
+                @if(Context.Session.GetString("UserId") != null)
+                {
+                    <span style="color:white; font-size:20px;">@Context.Session.GetString("Email")</span>
+                }
+            </div>
+            <!--<p id="email">fulano@example.com</p>-->
+        </div>
+        <form method="post" action="/AutenticaLogin/Logout">
+            <div class="Button">
+                <button class="Btnsair" type="submit">Sair</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

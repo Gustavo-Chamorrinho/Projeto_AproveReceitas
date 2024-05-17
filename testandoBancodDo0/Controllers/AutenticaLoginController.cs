@@ -40,10 +40,13 @@ namespace testandoBancodDo0.Controllers
                         //armazenamento de nome do usuario que fizer login
                         HttpContext.Session.SetString("UserId", usuario.Id.ToString());
                         HttpContext.Session.SetString("UserName", usuario.Name);
+                        HttpContext.Session.SetString("Email", usuario.Email);
                        // Console.WriteLine($"O valor de UserId na sessão é: {usuario.Id}"); //teste para verificar o Id
 
                         string UsuarioLogado = HttpContext.Session.GetString("UserName");
                         ViewBag.UserName = UsuarioLogado;
+                        
+                      
 
                         // Se as credenciais forem válidas, redireciona para a página principal
                         return RedirectToAction("Home", "Site");
@@ -67,6 +70,15 @@ namespace testandoBancodDo0.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        public IActionResult Logout() 
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Site");
+        }
     }
+
+    
 }
 
