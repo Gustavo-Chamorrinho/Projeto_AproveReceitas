@@ -6,7 +6,6 @@ using System.Linq;
 using testandoBancodDo0.Context;
 using Microsoft.AspNetCore.Http;
 
-//adicionado recentemente (validação para login no banco)
 
 namespace testandoBancodDo0.Controllers
 {
@@ -40,19 +39,19 @@ namespace testandoBancodDo0.Controllers
                         //armazenamento de nome do usuario que fizer login
                         HttpContext.Session.SetString("UserId", usuario.Id.ToString());
                         HttpContext.Session.SetString("UserName", usuario.Name);
+                        HttpContext.Session.SetString("Email", usuario.Email);
                        // Console.WriteLine($"O valor de UserId na sessão é: {usuario.Id}"); //teste para verificar o Id
 
                         string UsuarioLogado = HttpContext.Session.GetString("UserName");
                         ViewBag.UserName = UsuarioLogado;
 
-                        // Se as credenciais forem válidas, redireciona para a página principal
+                        
                         return RedirectToAction("Home", "Site");
                     }
                     else
                     {
-                        //aqui exibe a mensagem que joga lá para o html na parte do If fazendo um foreach e mostrando os erros.
-                        ModelState.AddModelError(string.Empty, "Informações Inválidas. Tente novamente.");
-                        ModelState.AddModelError(string.Empty, "Verifique as informações digitadas.");
+                        //menssagem de erros
+                        TempData["ErrorMessage"] = "Informações inválidas, verifique e tente novamente.";
                         return View("~/Views/Site/Login.cshtml",model);
                     }
                 }
@@ -66,6 +65,13 @@ namespace testandoBancodDo0.Controllers
                 Console.WriteLine($"Erro ao fazer login: {ex.Message}");
                 return View();
             }
+        }
+
+        [HttpPost]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Site");
         }
     }
 }

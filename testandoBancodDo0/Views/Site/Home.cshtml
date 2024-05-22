@@ -38,8 +38,8 @@
 
                 @if (Context.Session.GetString("UserId") != null)
                 {
-                    <a href="#">
-                        <li style="color:white; font-size:22px;"><span style="color:white; font-size:22px;">Olá, @Context.Session.GetString("UserName")!</span></li>
+                    <a asp-controller="Site" asp-action="AreaUsuario">
+                        <span style="color:white; font-size:22px;">Olá, @Context.Session.GetString("UserName")!</span>
                     </a>
                 }
 

@@ -88,13 +88,10 @@
                     </div>-->
                 </div>
 
-                @if (ViewData.ModelState.ContainsKey(""))
+                @if (TempData["ErrorMessage"] != null)
                 {
-                    <div class="alert alert-danger" role="alert">
-                        @foreach (var error in ViewData.ModelState[""].Errors)
-                        {
-                            <p>@error.ErrorMessage</p>
-                        }
+                    <div class="error-message" style="color: red;">
+                        <p>@TempData["ErrorMessage"]</p>
                     </div>
                 }
 
@@ -111,5 +108,6 @@
 
     <!-- JAVASCRIPT -->
     <script type="text/javascript" src="~/js/Cadastro.js"></script>
+    <script type="text/javascript" src="~/js/ManterForm.js"></script>
 </body>
 </html>
