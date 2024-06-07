@@ -26,14 +26,14 @@ namespace testandoBancodDo0.Controllers
                 // Verificar se as senhas coincidem
                 if (model.Senha != confirmPassword)
                 {
-                    ModelState.AddModelError(string.Empty, "As senhas não São iguais. Por favor, insira senhas iguais.");
+                    TempData["ErrorMessage"] = "As senhas não são parecidas, tente novamente.";
                     return View("/Views/Site/Cadastro.cshtml", model);
                 }
 
                 //senha com 6 caracteres
                 if (model.Senha.Length < 6)
                 {
-                    ModelState.AddModelError(string.Empty, "As senhas precisam ter pelo menos 6 caracteres");
+                    TempData["ErrorMessage"] = "As senhas precisam conter pelo menos 6 caracteres";
                     return View("/Views/Site/Cadastro.cshtml", model);
                 }
 
@@ -41,14 +41,14 @@ namespace testandoBancodDo0.Controllers
                 var UsuarioExistente = _dbContext.usuarios.FirstOrDefault(u => u.Email == model.Email);
                 if (UsuarioExistente != null)
                 {
-                    ModelState.AddModelError(string.Empty, "O E-mail digitado já esta sendo utilizado, Tente outro novamente.");
+                    TempData["ErrorMessage"] = "O E-mail digitado já esta sendo utilizado por outro usuário.";
                     return View("/Views/Site/Cadastro.cshtml", model);
                 }
 
                 //verifica se contem caracter especial
                 if (!CaracterEspecial(model.Senha))
                 {
-                    ModelState.AddModelError(string.Empty, "As senhas precisam conter um caracter especial, Ex:'@'");
+                    TempData["ErrorMessage"] = "A senha precisa conter um caracterer especial EX:'@'";
                     return View("/Views/Site/Cadastro.cshtml", model);
                 }
 

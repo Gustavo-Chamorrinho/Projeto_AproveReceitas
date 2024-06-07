@@ -1,0 +1,121 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Sobre Nós";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="~/css/SobreNos.css">
+    <title></title>
+</head>
+
+<body>
+    <div class="scroll-up-btn">
+        <ion-icon name="chevron-up-outline"></ion-icon>
+    </div>
+    <div class="navbar">
+        <div class="max-width">
+            <div class="logo"><a href="#">Aprove<span> Receitas</span></a></div>
+            <ul class="menu">
+                <li><a asp-controller="Site" asp-action="PrincipalHome">Inicio</a></li>
+                <li><a href="#teams">Receitas</a></li>
+                <li><a asp-controller="Site" asp-action="Cadastro">Cadastro</a></li>
+                <li><a asp-controller="Site" asp-action="Contato">Contato</a></li>
+                <li><a asp-controller="Site" asp-action="Login">Login</a></li>
+            </ul>
+            <div class="menu-btn">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+        </div>
+    </div>
+    <!--sessão sobre-->
+    <section class="about" id="about">
+        <div class="max-width">
+            <h2 class="title">Sobre nós</h2>
+            <div class="about-content">
+                <div class="column left">
+                    <img src="~/imagens/logo.jpg" alt="">
+                </div>
+                <div class="column right">
+                    <p><b>Aprove Receitas</b>, o seu guia para criar pratos deliciosos com os alimentos que você já tem em casa. Ensinando receitas criativas e práticas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--sessão valores-->
+    <section class="services" id="services">
+        <div class="max-width">
+            <h2 style="color: #fff;" class="title">Nossos valores</h2>
+            <div class="serv-content">
+                <div class="card">
+                    <div class="box">
+                        <ion-icon name="trending-up-outline"></ion-icon>
+                        <div class="text">Experiencias Acessiveis</div>
+                        <p>Tornar a arte de cozinhar novas receitas algo alcançável e agradável para uma ampla gama de pessoas, independente do seu nível de habilidade.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="box">
+                        <ion-icon name="brush-outline"></ion-icon>
+                        <div class="text">Nossa Missão</div>
+                        <p>No Aprove Receitas oferecemos receitas simples e inovadoras para aproveitar ao máximo o que você tem em casa.<br></p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="box">
+                        <ion-icon name="code-outline"></ion-icon>
+                        <div class="text">O que oferecemos</div>
+                        <p>
+                            - Receitas práticas com ingredientes comuns <br>
+                            - Dicas para aproveitar sobras de alimentos  <br><br>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!--sessão  footer-->
+    <footer>
+
+        <a href="#" style="color: #FE9900;">
+            <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+
+        <a href="#" style="color: #FE9900;"><ion-icon name="logo-instagram"></ion-icon></a>
+
+
+        <a href="https://wa.me/5567993339665?text=Ol%C3%A1%2C+tudo+bem%3F+tenho+interesse+em+contar+com+os+seus+servi%C3%A7os." style="color: #FE9900;">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+
+            <br>
+            <br>
+
+            <span style="color: #fff;">Criado por <a href="index.html#about" style="color: #FE9900;"><i>Aprove Receitas</i></a> | © Todos os direitos reservados 2023</span>
+    </footer>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+
+</body>
+</html>

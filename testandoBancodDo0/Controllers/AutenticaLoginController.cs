@@ -48,14 +48,12 @@ namespace testandoBancodDo0.Controllers
                         
                       
 
-                        // Se as credenciais forem válidas, redireciona para a página principal
-                        return RedirectToAction("Home", "Site");
+                        
+                        return RedirectToAction("PrincipalHome", "Site");
                     }
                     else
                     {
-                        //aqui exibe a mensagem que joga lá para o html na parte do If fazendo um foreach e mostrando os erros.
-                        ModelState.AddModelError(string.Empty, "Informações Inválidas. Tente novamente.");
-                        ModelState.AddModelError(string.Empty, "Verifique as informações digitadas.");
+                        TempData["ErrorMessage"] = "Informações inválidas, verifique e tente novamente.";
                         return View("~/Views/Site/Login.cshtml",model);
                     }
                 }

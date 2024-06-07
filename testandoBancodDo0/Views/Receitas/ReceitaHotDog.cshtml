@@ -3,6 +3,7 @@
 *@
 @{
 }
+@model List<testandoBancodDo0.Models.BuscaModel>
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -45,44 +46,42 @@
     </div>
     <div class="separador"></div>
     <!--BODY-->
-    <h1 id="titulo">Hot-Dog</h1>
-    <div class="separador"></div>
-    <br>
-    <div class="recipe" id="recipe2">
-        <div class="imageCont">
-            <img src="~/imagens/img-1.png" alt="Imagem 1" class="image">
+    @if (Model != null && Model.Count > 0)
+    {
+        @foreach (var receita in Model)
+        {
+            <h1 id="titulo">@receita.Nome</h1>
+            <div class="separador"></div>
             <br>
-            <i class="favorite fa-solid fa-heart" data-recipe="2"></i> <!-- Ícone de coração -->
-            <i class="share fa-regular fa-share-from-square"></i>
-        </div>
-    </div>
-    <br>
-    <div class="icon2">
-        <i class="fa-regular fa-clock"> 30 Min</i>
-        <i class="fa-solid fa-utensils "> Facil</i>
-        <i class="fa-solid fa-coins "> Custo Medio</i>
-    </div>
-    <br>
-    <div class="separador"></div>
-    <div class="ingredientes">
-        <h2>Ingredientes</h2>
-        <p>
-            -300g de salsicha
+            <div class="recipe" id="recipe2">
+                <div class="imageCont">
+                    <img src="@receita.ImagemWeb" alt="Imagem 1" class="image">
+                    <br>
+                    <i class="favorite fa-solid fa-heart" data-recipe="2"></i> <!-- Ícone de coração -->
+                    <i class="share fa-regular fa-share-from-square"></i>
+                </div>
+            </div>
             <br>
-            -1 tomate
+@*             <div class="icon2">
+                <i class="fa-regular fa-clock"> 30 Min</i>
+                <i class="fa-solid fa-utensils "> Facil</i>
+                <i class="fa-solid fa-coins "> Custo Medio</i>
+            </div> *@
             <br>
-            -1 copo de extrato de tomate
-            <br>
-            -1/2 medida do copo de extrato tomate de água
-            <br>
-            -1 cebola
-            <br>
-            -1 olher de manteiga
-            <br>
-            -1 caixa de creme de leite
-            <br>
-        </p>
-    </div>
+            @foreach (var ingredientes in receita.Ingredientes)
+            {
+                <div class="separador"></div>
+                <div class="ingredientes">
+                    <h2>Ingredientes</h2>
+                    <p>
+                       @ingredientes
+                        <br>
+                    </p>
+                </div>
+            }
+        }
+    }
+
     <p class="d-inline-flex gap-1">
         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="background: #FE9900; border-color: #FE9900;">
             Comprar ingredientes

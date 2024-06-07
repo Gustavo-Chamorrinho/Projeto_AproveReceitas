@@ -85,15 +85,13 @@
             </div>
 
             <!-- Se houver erros de validação, exiba mensagens de erro -->
-            @if (ViewData.ModelState.ContainsKey(""))
+            @if (TempData["ErrorMessage"] != null)
             {
-                <div class="alert alert-danger" role="alert">
-                    @foreach (var error in ViewData.ModelState[""].Errors)
-                    {
-                        <p>@error.ErrorMessage</p>
-                    }
+                <div class="error-message" style="color: red;">
+                    <p>@TempData["ErrorMessage"]</p>
                 </div>
             }
+
             <div class="g-recaptcha" data-sitekey="6LdrooUpAAAAAIiuP3YTS1TIEa_XwOZ3n3o3RkFU"></div>
             <!-- LOGIN BUTTON -->
             <button type="submit" id="login_button" onclick="verificarRecaptcha()">

@@ -54,5 +54,15 @@ namespace testandoBancodDo0.Controllers
             return View();
         }
 
+        public IActionResult PrincipalHome()
+        {
+            return View();
+        }
+
+        public IActionResult SobreNos()
+        {
+            return View();
+        }
+
     }
 }

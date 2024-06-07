@@ -73,6 +73,6 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Site}/{action=Home}/{id?}");
+    pattern: "{controller=Site}/{action=SobreNos}/{id?}");
 
 app.Run();
