@@ -3,14 +3,14 @@
 *@
 @{
 }
-@model List<testandoBancodDo0.Models.BuscaModel>
+@model BuscaModel
 <!doctype html>
 <html lang="pt-br">
 <head>
     <script src="https://kit.fontawesome.com/6f925b0522.js" crossorigin="anonymous"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hot-Dog</title>
+    <title>@Model.Nome</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/Receitas.css">
 </head>
@@ -30,7 +30,7 @@
                     <a class="nav-link" asp-controller="Site" asp-action="Favoritos">Favoritos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Site" asp-action="CadastrarReceita">Criar Receita</a>
+                    <a class="nav-link" asp-controller="Site" asp-action="PrincipalHome">Receitas</a>
                 </li>
             </ul>
         </div>
@@ -46,41 +46,38 @@
     </div>
     <div class="separador"></div>
     <!--BODY-->
-    @if (Model != null && Model.Count > 0)
-    {
-        @foreach (var receita in Model)
+
+    <h1 id="titulo">@Model.Nome</h1>
+    <div class="separador"></div>
+    <br>
+    <div class="recipe" id="recipe2">
+        <div class="imageCont">
+            <img src="@Model.ImagemWeb" alt="Imagem 1" class="image">
+            <br>
+            <i class="favorite fa-solid fa-heart" data-recipe="2"></i> <!-- Ícone de coração -->
+            <i class="share fa-regular fa-share-from-square"></i>
+        </div>
+    </div>
+    <br>
+    @*             <div class="icon2">
+    <i class="fa-regular fa-clock"> 30 Min</i>
+    <i class="fa-solid fa-utensils "> Facil</i>
+    <i class="fa-solid fa-coins "> Custo Medio</i>
+    </div> *@
+    <br>
+
+    <div class="separador"></div>
+    <div class="ingredientes">
+        <h2>Ingredientes</h2>
+        @foreach (var ingredientes in Model.Ingredientes)
         {
-            <h1 id="titulo">@receita.Nome</h1>
-            <div class="separador"></div>
-            <br>
-            <div class="recipe" id="recipe2">
-                <div class="imageCont">
-                    <img src="@receita.ImagemWeb" alt="Imagem 1" class="image">
-                    <br>
-                    <i class="favorite fa-solid fa-heart" data-recipe="2"></i> <!-- Ícone de coração -->
-                    <i class="share fa-regular fa-share-from-square"></i>
-                </div>
-            </div>
-            <br>
-@*             <div class="icon2">
-                <i class="fa-regular fa-clock"> 30 Min</i>
-                <i class="fa-solid fa-utensils "> Facil</i>
-                <i class="fa-solid fa-coins "> Custo Medio</i>
-            </div> *@
-            <br>
-            @foreach (var ingredientes in receita.Ingredientes)
-            {
-                <div class="separador"></div>
-                <div class="ingredientes">
-                    <h2>Ingredientes</h2>
-                    <p>
-                       @ingredientes
-                        <br>
-                    </p>
-                </div>
-            }
+            <p>
+                @ingredientes
+                <br>
+            </p>
         }
-    }
+       
+    </div>
 
     <p class="d-inline-flex gap-1">
         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="background: #FE9900; border-color: #FE9900;">
@@ -111,9 +108,11 @@
     <br>
     <div class="preparo">
         <h2>Modo de Preparo</h2>
-        <ul>1. Pique a cebola e o tomate, refogue bem na manteiga.</ul>
-        <ul>2. Acrescente o extrato de tomate, corte a salsicha em rodelas e deixe cozinhar a gosto, se presiso acrescente a medida de água.</ul>
-        <ul>3. Depois de cozinhar bem, acrescente o creme de leite e é so servir.</ul>
+        
+        
+            <p>@Model.Instrucoes</p>
+        
+        
     </div>
     <br>
     <div class="separador"></div>
@@ -125,7 +124,7 @@
         <a href="https://wa.me/5567993339665?text=Ol%C3%A1%2C+tudo+bem%3F+tenho+interesse+em+contar+com+os+seus+servi%C3%A7os." style="color: #FE9900;"><i class="fa-brands fa-whatsapp"></i></a>
         <br>
         <br>
-        <span style="color: #fff;">Criado por <a href="#about" style="color: #FE9900;"><i>Aprove Receitas</i></a> | © Todos os direitos reservados 2023</span>
+        <span style="color: #fff;">Criado por <a href="#about" style="color: #FE9900;"><i>Aprove Receitas</i></a> | © Todos os direitos reservados 2024</span>
     </footer>
     <script src="~/js/ReceitasFav.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

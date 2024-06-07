@@ -2,6 +2,7 @@
 {
     public class BuscaModel
     {
+        public int Id { get; set; }
         public string Nome { get; set; }
         public List<string> Ingredientes { get; set; }
         public string Instrucoes { get; set; }

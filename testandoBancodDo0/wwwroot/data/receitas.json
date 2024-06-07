@@ -1,5 +1,6 @@
 [
   {
+    "Id": 1,
     "Nome": "Macarrão Carbonara",
     "Ingredientes": [ "Macarrão", "Ovos", "Bacon", "Queijo Parmesão" ],
     "Instrucoes": "Cozinhe o macarrão, prepare o molho com ovos e bacon, misture tudo.",
@@ -7,6 +8,7 @@
     "Descricao": "Um prato clássico italiano feito com macarrão."
   },
   {
+    "Id": 2,
     "Nome": "Macarrão ao Pesto",
     "Ingredientes": [ "Macarrão", "Manjericão", "Pinoli", "Azeite", "Queijo Parmesão" ],
     "Instrucoes": "Prepare o molho pesto, cozinhe o macarrão, misture tudo.",
@@ -14,6 +16,7 @@
     "Descricao": "Delicioso macarrão ao molho pesto."
   },
   {
+    "Id": 3,
     "Nome": "Salada de Frango",
     "Ingredientes": [ "Frango", "Alface", "Tomate", "Cenoura", "Molho de Mostarda" ],
     "Instrucoes": "Grelhe o frango, prepare os legumes, misture com o molho.",
@@ -21,6 +24,7 @@
     "Descricao": "Uma salada saudável e saborosa com frango grelhado."
   },
   {
+    "Id": 4,
     "Nome": "Macarrão à Bolonhesa",
     "Ingredientes": [ "Macarrão", "Carne Moída", "Molho de Tomate", "Cebola", "Alho", "Queijo Parmesão" ],
     "Instrucoes": "Cozinhe o macarrão, prepare o molho bolonhesa com carne moída e molho de tomate, misture tudo.",
@@ -28,6 +32,7 @@
     "Descricao": "Macarrão com molho de carne moída e tomate, um prato clássico italiano."
   },
   {
+    "Id": 5,
     "Nome": "Macarrão Alfredo",
     "Ingredientes": [ "Macarrão", "Manteiga", "Creme de Leite", "Queijo Parmesão", "Alho" ],
     "Instrucoes": "Cozinhe o macarrão, prepare o molho Alfredo com manteiga, creme de leite e queijo parmesão, misture tudo.",

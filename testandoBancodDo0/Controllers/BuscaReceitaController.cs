@@ -36,5 +36,25 @@ namespace testandoBancodDo0.Controllers
             return NotFound("Arquivo Json nao encontrado");
 
         }
+
+
+        [HttpGet]
+        public IActionResult Detalhes(int id)
+        {
+            string arquivoJson = Path.Combine(_env.WebRootPath, "data", "receitas.json");
+
+            if (System.IO.File.Exists(arquivoJson))
+            {
+                string ReceitaJson = System.IO.File.ReadAllText(arquivoJson);
+                var receitas = JsonSerializer.Deserialize<List<BuscaModel>>(ReceitaJson);
+
+                var receita = receitas.FirstOrDefault(r => r.Id == id);
+                if (receita != null)
+                {
+                    return View("~/Views/Receitas/ReceitaHotDog.cshtml", receita);
+                }
+            }
+            return NotFound("Receita não encontrada");
+        }
     }
 }
