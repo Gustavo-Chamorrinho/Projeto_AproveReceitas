@@ -24,6 +24,10 @@ namespace testandoBancodDo0.Models
         public virtual UsuarioModel ?Usuario { get; set; }
 
         public byte[]? imagem { get; set; }
+        public string Dificuldade { get; set; }
+        public string Custo { get; set; }
+        public int TempoPreparo { get; set; }
+        public string UnidadeTempo { get; set; }
 
     }
 }

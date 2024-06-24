@@ -9,11 +9,6 @@ namespace testandoBancodDo0.Controllers
             return View();
         }
 
-        public IActionResult Home()
-        {
-            return View();
-        }
-
         public IActionResult Login()
         {
             return View();
@@ -54,6 +49,20 @@ namespace testandoBancodDo0.Controllers
             return View();
         }
 
+        public IActionResult CadastraReceita()
+        {
+            return View();
+        }
+
+        public IActionResult SobreNos()
+        {
+            return View();
+        }
+
+        public IActionResult PrincipalHome()
+        {
+            return View();
+        }
 
     }
 }

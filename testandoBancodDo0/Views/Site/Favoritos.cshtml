@@ -16,17 +16,17 @@
 <body>
     <!-- topo-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom" style="background-color: #091B26;">
-        <a class="navbar-brand" asp-controller="Site" asp-action="Home"><span style="color: #FE9900;">Aprove</span> Receitas</a>
+        <a class="navbar-brand" asp-controller="Site" asp-action="PrincipalHome"><span style="color: #FE9900;">Aprove</span> Receitas</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" asp-controller="Site" asp-action="Home">Inicio <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" asp-controller="Site" asp-action="PrincipalHome">Inicio <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Site" asp-action="CadastrarReceita">Criar Receita</a>
+                    <a class="nav-link" asp-controller="Site" asp-action="CadastraReceita">Criar Receita</a>
                 </li>
             </ul>
         </div>
@@ -54,7 +54,7 @@
         <div class="card" style="width: 18rem; display: none;" id="card2">
             <div class="card-body">
                 <div id="favoritedImageContainer2"></div>
-                <h5 class="card-title">Hot-Dog</h5>
+                <h5 class="card-title">TESTE</h5>
                 <a asp-controller="Receitas" asp-action="ReceitaHotDog" class="btn btn-primary">Ver</a>
                 <a href="#" class="btn btn-primary">Remover</a>
             </div>

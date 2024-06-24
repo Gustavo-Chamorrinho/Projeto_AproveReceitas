@@ -14,7 +14,7 @@ namespace testandoBancodDo0.Controllers
         }
 
         [HttpPost]
-        public IActionResult SolicitarReceita([Bind("Titulo,Descricao,Ingredientes")] ReceitaModel model, IFormFile imagem)
+        public IActionResult SolicitarReceita([Bind("Titulo,Descricao,Ingredientes,Dificuldade,Custo,TempoPreparo,UnidadeTempo")] ReceitaModel model, IFormFile imagem)
         {
             try
             {
@@ -37,7 +37,11 @@ namespace testandoBancodDo0.Controllers
                         Descricao = model.Descricao,
                         Ingredientes = model.Ingredientes,
                         IdUsuario = usuarioID,
-                        imagem = model.imagem
+                        imagem = model.imagem,
+                        Dificuldade = model.Dificuldade,
+                        Custo = model.Custo,
+                        TempoPreparo = model.TempoPreparo,
+                        UnidadeTempo = model.UnidadeTempo
 
                     };
 
@@ -54,7 +58,7 @@ namespace testandoBancodDo0.Controllers
 
                 // Se houver erros de validação, retorna a página de cadastro com os erros
                 Console.WriteLine("Deu erro aqui camarada"); //ajustar essa mensagem de erro.
-                return View("/Views/Site/CadastrarReceita.cshtml", model);
+                return View("/Views/Site/CadastraReceita.cshtml", model);
             }
             catch (Exception ex)
             {

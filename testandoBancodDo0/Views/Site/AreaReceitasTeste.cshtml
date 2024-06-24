@@ -1,0 +1,43 @@
+﻿@model List<testandoBancodDo0.Models.BuscaModel>
+@{
+    ViewData["Title"] = "Buscar Receitas";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post" asp-controller="BuscaReceita" asp-action="Buscar" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="nome" class="form-control" placeholder="Digite o nome da receita" required />
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+        </div>
+    </div>
+</form>
+
+<hr />
+
+@if (Model != null && Model.Count > 0)
+{
+    @foreach (var receita in Model)
+    {
+        <div class="card mb-4">
+            <img src="@receita.ImagemWeb" class="card-img-top" alt="Imagem de @receita.Nome">
+            <div class="card-body">
+                <h2 class="card-title">@receita.Nome</h2>
+                <p class="card-text"><strong>Ingredientes:</strong></p>
+                <ul>
+                    @foreach (var ingrediente in receita.Ingredientes)
+                    {
+                        <li>@ingrediente</li>
+                    }
+                </ul>
+                <p class="card-text"><strong>Instruções:</strong></p>
+                <p class="card-text">@receita.Instrucoes</p>
+            </div>
+        </div>
+    }
+}
+else if (Model != null)
+{
+    <p>Nenhuma receita encontrada.</p>
+}

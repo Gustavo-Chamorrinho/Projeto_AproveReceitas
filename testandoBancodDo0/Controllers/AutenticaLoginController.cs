@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using testandoBancodDo0.Context;
 using Microsoft.AspNetCore.Http;
+using testandoBancodDo0.Helper;
 
 
 namespace testandoBancodDo0.Controllers
@@ -32,7 +33,7 @@ namespace testandoBancodDo0.Controllers
                 if (ModelState.IsValid)
                 {
                     // Verificar as credenciais no banco de dados
-                    var usuario = _dbContext.usuarios.FirstOrDefault(u => u.Email == model.Email && u.Senha == model.Senha);
+                    var usuario = _dbContext.usuarios.FirstOrDefault(u => u.Email == model.Email && u.Senha == model.Senha.GerarHash());
 
                     if (usuario != null)
                     {
@@ -46,7 +47,7 @@ namespace testandoBancodDo0.Controllers
                         ViewBag.UserName = UsuarioLogado;
 
                         
-                        return RedirectToAction("Home", "Site");
+                        return RedirectToAction("PrincipalHome", "Site");
                     }
                     else
                     {

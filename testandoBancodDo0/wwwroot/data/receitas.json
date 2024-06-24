@@ -1,0 +1,44 @@
+[
+  {
+    "Id": 1,
+    "Nome": "Macarrão Carbonara",
+    "Ingredientes": [ "Macarrão", "Ovos", "Bacon", "Queijo Parmesão" ],
+    "Instrucoes": "Cozinhe o macarrão, prepare o molho com ovos e bacon, misture tudo.",
+    "ImagemWeb": "https://i.pinimg.com/736x/38/11/6c/38116cb2cd4e42d3ce4668f22b00f5e9.jpg",
+    "Descricao": "Um prato clássico italiano feito com macarrão."
+  },
+  {
+    "Id": 2,
+    "Nome": "Macarrão ao Pesto",
+    "Ingredientes": [ "Macarrão", "Manjericão", "Pinoli", "Azeite", "Queijo Parmesão" ],
+    "Instrucoes": "Prepare o molho pesto, cozinhe o macarrão, misture tudo.",
+    "ImagemWeb": "https://renata.com.br/images/receitas/36/renata-imagem-receitas-macarrao-ao-molho-pesto-share.jpg",
+    "Descricao": "Delicioso macarrão ao molho pesto."
+  },
+  {
+    "Id": 3,
+    "Nome": "Salada de Frango",
+    "Ingredientes": [ "Frango", "Alface", "Tomate", "Cenoura", "Molho de Mostarda" ],
+    "Instrucoes": "Grelhe o frango, prepare os legumes, misture com o molho.",
+    "ImagemWeb": "https://diariodonordeste.verdesmares.com.br/image/contentid/policy:1.3209790:1648470963/salada%20com%20frango.jpg?f=4x3&$p$f=77054a6",
+    "Descricao": "Uma salada saudável e saborosa com frango grelhado."
+  },
+  {
+    "Id": 4,
+    "Nome": "Macarrão à Bolonhesa",
+    "Ingredientes": [ "Macarrão", "Carne Moída", "Molho de Tomate", "Cebola", "Alho", "Queijo Parmesão" ],
+    "Instrucoes": "Cozinhe o macarrão, prepare o molho bolonhesa com carne moída e molho de tomate, misture tudo.",
+    "ImagemWeb": "https://img.cybercook.com.br/receitas/610/espaguete-com-molho-a-bolonhesa-ou-ragu-bolognese-1.jpeg",
+    "Descricao": "Macarrão com molho de carne moída e tomate, um prato clássico italiano."
+  },
+  {
+    "Id": 5,
+    "Nome": "Macarrão Alfredo",
+    "Ingredientes": [ "Macarrão", "Manteiga", "Creme de Leite", "Queijo Parmesão", "Alho" ],
+    "Instrucoes": "Cozinhe o macarrão, prepare o molho Alfredo com manteiga, creme de leite e queijo parmesão, misture tudo.",
+    "ImagemWeb": "https://www.receiteria.com.br/wp-content/uploads/fettuccine-alfredo-rotated.jpeg",
+    "Descricao": "Macarrão com molho cremoso de queijo parmesão."
+  }
+]
+
+
