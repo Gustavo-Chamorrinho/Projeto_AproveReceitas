@@ -33,6 +33,7 @@
                 <li><a asp-controller="Site" asp-action="CadastraReceita">Solicite uma Receita</a></li>
                 <li><a asp-controller="Site" asp-action="Contato">Contato</a></li>
                 <li><a asp-controller="Site" asp-action="Cadastro">Cadastre-se</a></li>
+                <li><a asp-controller="Site" asp-action="Login">Login</a></li>
                 
             </ul>
             <div class="UsuarioLogado">
@@ -66,7 +67,7 @@
             </div>
             <div class="card">
                 <div class="box">
-                    <a href="receita3.html">
+                    <a asp-controller="Receitas" asp-action="ReceitaFrango">
                         <img src="~/imagens/img-4.png" alt="">
                     </a>
                     <div class="text">Frango Caipira</div>
@@ -75,7 +76,7 @@
             </div>
             <div class="card">
                 <div class="box">
-                    <a href="receita4.html">
+                    <a asp-controller="Receitas" asp-action="ReceitaGaspacho">
                         <img src="~/imagens/img-2.png" alt="">
                     </a>
                     <div class="text">Gaspacho</div>
@@ -86,7 +87,7 @@
     </section>
     <section class="Receitas">
         <H3>Receitas Completas</H3>
-        <!--parte onde mostrar a lista de receitas-->
+        <!--parte onde mostra a lista de receitas-->
         <form method="post" asp-controller="BuscaReceita" asp-action="Buscar" class="mb-4">
             <div class="pesquisa">
                 <input type="text" name="nome" class="form-control" placeholder="Digite o nome da receita" required />

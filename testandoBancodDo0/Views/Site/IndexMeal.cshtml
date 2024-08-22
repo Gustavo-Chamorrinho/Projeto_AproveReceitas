@@ -1,0 +1,36 @@
+﻿@model testandoBancodDo0.Models.MealResponse
+
+@{
+    ViewData["Title"] = "Meals";
+}
+<!--AREA DE TESTES-->
+<h1>Meals</h1>
+
+<form method="get" action="/Meal/IndexMeal">
+    <input type="text" name="search" placeholder="Search for a meal" />
+    <input type="submit" value="Search" />
+</form>
+
+@if (Model?.Meals != null && Model.Meals.Any())
+{
+    <ul>
+        @foreach (var meal in Model.Meals)
+        {
+            <li>
+                <img src="@meal.Thumbnail" alt="@meal.Name" width="100" />
+                <h2>@meal.Name</h2>
+                <p>@meal.Category - @meal.Area</p>
+                <p>@meal.Instructions</p>
+            </li>
+        }
+    </ul>
+}
+else if (Model?.Meals == null)
+{
+    <p>Please enter a search term to find meals.</p>
+}
+else
+{
+    <p>No results found for your search.</p>
+}
+

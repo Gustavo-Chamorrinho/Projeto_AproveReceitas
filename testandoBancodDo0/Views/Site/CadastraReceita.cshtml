@@ -113,6 +113,14 @@
                         Enviar Solicitação
                     </button>
 
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger" style="color:red">
+                            @Html.Raw(TempData["ErrorMessage"].ToString())
+                        </div>
+                    }
+
+
                 </form>
             </div>
         </div>
@@ -137,7 +145,6 @@
             <span style="color: #fff;">Criado por <a asp-controller="Site" asp-action="Home" style="color: #FE9900;"><i>Aprove Receitas</i></a> | © Todos os direitos reservados 2023</span>
     </footer>
 
-    <script type="text/javascript" src="~/js/ValidarImagem.js "></script>
 
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

@@ -90,10 +90,11 @@
 
                 @if (TempData["ErrorMessage"] != null)
                 {
-                    <div class="error-message" style="color: red;">
-                        <p>@TempData["ErrorMessage"]</p>
+                    <div class="alert alert-danger" style="color:red">
+                        @Html.Raw(TempData["ErrorMessage"].ToString())
                     </div>
                 }
+
 
             <!-- LOGIN BUTTON -->
             <button type="submit" id="login_button">

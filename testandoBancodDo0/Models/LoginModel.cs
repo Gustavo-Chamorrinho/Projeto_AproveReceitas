@@ -4,7 +4,7 @@ namespace testandoBancodDo0.Models
 {
     public class LoginModel
     {
-        [Required(ErrorMessage = "Campo Nome é obrigatório")]
+        //[Required(ErrorMessage = "Campo Nome é obrigatório")]
         public string? Name { get; set; }
 
         [Required(ErrorMessage = "Campo E-mail é obrigatório")]

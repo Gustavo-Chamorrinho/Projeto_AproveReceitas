@@ -1,19 +1,40 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using System.Globalization;
+using System.Reflection;
+using System.Resources;
 using testandoBancodDo0.Context;
 using testandoBancodDo0.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Adicionar os serviços necessários
-builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<AproveDbContext>(options =>
+builder.Services.AddControllersWithViews()
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+    .AddDataAnnotationsLocalization();
+
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+    var supportedCultures = new[] { new CultureInfo("en"), new CultureInfo("pt-BR") };
+    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
 });
+
+builder.Services.AddSingleton(sp =>
+    new ResourceManager("testandoBancodDo0.Resources.ResourceMensagensErro", Assembly.GetExecutingAssembly()));
+
+builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ValidarImagemController>();
 
 // Adicionar o serviço de sessão
 builder.Services.AddDistributedMemoryCache();
@@ -24,18 +45,14 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-
-
-//Serviços de ReCaptcha
-/*builder.Services.AddRecaptcha(new RecaptchaOptions
+// Adicionar o DbContext
+builder.Services.AddDbContext<AproveDbContext>(options =>
 {
-    SiteKey = "chave",
-    SecretKey = "segredo"
-});*/
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
-
-// Adicionar o HomeController
-//builder.Services.AddControllersWithViews().AddApplicationPart(typeof(HomeController).Assembly);
+builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
@@ -55,18 +72,17 @@ app.UseAuthorization();
 // Adicionar o uso do serviço de sessão
 app.UseSession();
 
+// Configurar localização
+var locOptions = app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value;
+app.UseRequestLocalization(locOptions);
+
 app.MapControllerRoute(
     name: "Cadastro",
     pattern: "{controller=Cadastro}/{action=Cadastrar}/{id?}");
 
 app.MapControllerRoute(
-              name: "Cadastro",
-              pattern: "{controller=Cadastro}/{action=SolicitarReceita}/{id?}");
-
-//esse mapController é para chamar a ação de autenticar login no banco de dados (está funcionando sem precisas usar essa rota.)
-/* app.MapControllerRoute(
-     name: "Autenticar",
-     pattern: "{controller=AutenticaLogin}/{action=Login}/{id?}");*/
+    name: "Cadastro",
+    pattern: "{controller=Cadastro}/{action=SolicitarReceita}/{id?}");
 
 app.MapControllerRoute(
     name: "default",

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Resources;
 using System.Text.Json;
 using testandoBancodDo0.Models;
 
@@ -7,10 +8,12 @@ namespace testandoBancodDo0.Controllers
     public class BuscaReceitaController : Controller
     {
         private readonly IWebHostEnvironment _env;
+        private readonly ResourceManager _resourceManager;
 
-        public BuscaReceitaController(IWebHostEnvironment env)
+        public BuscaReceitaController(ResourceManager resourceManager, IWebHostEnvironment env)
         {
             _env = env;
+            _resourceManager = resourceManager;
         }
 
         public IActionResult Index()
@@ -33,7 +36,8 @@ namespace testandoBancodDo0.Controllers
                     .ToList();
                 return View("~/Views/Site/PrincipalHome.cshtml", resultados);
             }
-            return NotFound("Arquivo Json nao encontrado");
+            string? ErroGeral = _resourceManager.GetString("ERRO_GERAL");
+            return NotFound(ErroGeral);
 
         }
 
@@ -54,7 +58,8 @@ namespace testandoBancodDo0.Controllers
                     return View("~/Views/Receitas/ReceitaHotDog.cshtml", receita);
                 }
             }
-            return NotFound("Receita não encontrada");
+            string? ErroGeral = _resourceManager.GetString("ERRO_GERAL");
+            return NotFound(ErroGeral);
         }
     }
 }

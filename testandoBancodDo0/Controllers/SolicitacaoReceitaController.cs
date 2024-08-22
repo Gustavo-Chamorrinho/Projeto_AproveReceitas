@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
+using System.Resources;
 using testandoBancodDo0.Context;
 using testandoBancodDo0.Models;
 
@@ -7,10 +9,14 @@ namespace testandoBancodDo0.Controllers
     public class SolicitacaoReceitaController : Controller
     {
         private readonly AproveDbContext _dbContext;
+        private readonly ValidarImagemController _validarImagemController;
+        private readonly ResourceManager _resourceManager;
 
-        public SolicitacaoReceitaController(AproveDbContext dbContext)
+        public SolicitacaoReceitaController(AproveDbContext dbContext, ValidarImagemController validarImagem)
         {
             _dbContext = dbContext;
+            _validarImagemController = validarImagem;
+            _resourceManager = new ResourceManager("testandoBancodDo0.Resources.ResourceMensagensErroImg", Assembly.GetExecutingAssembly());
         }
 
         [HttpPost]
@@ -18,6 +24,14 @@ namespace testandoBancodDo0.Controllers
         {
             try
             {
+                var mensagensErro = _validarImagemController.ValidarImagem(imagem);
+
+                if (mensagensErro.Any())
+                {
+                    TempData["ErrorMessage"] = string.Join("<br/>", mensagensErro);
+                    return View("/Views/Site/CadastraReceita.cshtml", model);
+                }
+
                 if (ModelState.IsValid)
                 {
                     var usuarioID = HttpContext.Session.GetString("UserId");
@@ -30,7 +44,7 @@ namespace testandoBancodDo0.Controllers
                             model.imagem = ms.ToArray();
                         }
                     }
-                    // gera titulo,descriçao e ingredientes para jogar no banco de dados
+
                     var novaReceita = new ReceitaModel
                     {
                         Titulo = model.Titulo,
@@ -42,31 +56,23 @@ namespace testandoBancodDo0.Controllers
                         Custo = model.Custo,
                         TempoPreparo = model.TempoPreparo,
                         UnidadeTempo = model.UnidadeTempo
-
                     };
 
-                    // Adiciona o  usuário ao banco de dados
                     _dbContext.receitas.Add(novaReceita);
-
-                    // Salva as alterações no banco de dados
                     _dbContext.SaveChanges();
 
-
-                    // Se as credenciais forem válidas, redireciona para a página principal
-                    return RedirectToAction("Home", "Site");
+                    return RedirectToAction("PrincipalHome", "Site");
                 }
 
-                // Se houver erros de validação, retorna a página de cadastro com os erros
-                Console.WriteLine("Deu erro aqui camarada"); //ajustar essa mensagem de erro.
+                TempData["ErrorMessage"] = "Erro ao cadastrar receita.";
                 return View("/Views/Site/CadastraReceita.cshtml", model);
             }
             catch (Exception ex)
             {
-                // erros para ajudar na depuração
                 Console.WriteLine($"Erro ao cadastrar: {ex.Message}");
+                TempData["ErrorMessage"] = "Erro ao cadastrar receita.";
                 return View();
             }
         }
     }
 }
-

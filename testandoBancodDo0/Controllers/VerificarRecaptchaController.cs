@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace testandoBancodDo0 // Substitua pelo nome do seu namespace
+namespace testandoBancodDo0 
 {
     [Route("Home/[controller]")]
     [ApiController]
@@ -13,7 +13,7 @@ namespace testandoBancodDo0 // Substitua pelo nome do seu namespace
         public async Task<IActionResult> Post([FromBody] TokenRecaptcha token)
         {
             // Chave secreta do reCAPTCHA
-            string secretKey = "6LdrooUpAAAAAKUhQGQn1YaHtEPVy6_gmdR8JFBq"; // Substitua pela sua chave secreta
+            string secretKey = "6LdrooUpAAAAAKUhQGQn1YaHtEPVy6_gmdR8JFBq";
 
             using (var httpClient = new HttpClient())
             {

@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
-using System.Security.Claims;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
+using System.Resources;
 using testandoBancodDo0.Context;
+using testandoBancodDo0.Controllers.Validacoes;
 using testandoBancodDo0.Models;
 
 namespace testandoBancodDo0.Controllers
@@ -11,51 +10,30 @@ namespace testandoBancodDo0.Controllers
     public class CadastroController : Controller
     {
         private readonly AproveDbContext _dbContext;
+        private readonly ResourceManager _resourceManager;
 
         public CadastroController(AproveDbContext dbContext)
         {
             _dbContext = dbContext;
+            _resourceManager = new ResourceManager("testandoBancodDo0.Resources.ResourceMensagensErro", Assembly.GetExecutingAssembly());
         }
 
-
         [HttpPost]
-        public IActionResult Cadastrar([Bind("Name,Email,Senha")] UsuarioModel model, string confirmPassword)
+        public IActionResult Cadastrar([Bind("Name,Email,Senha,ConfirmPassword")] UsuarioModel model, string confirmPassword)
         {
             try
             {
-                // Verificar se as senhas coincidem
-                if (model.Senha != confirmPassword)
+                var valida = new ValidacaoCadastroUsu(_resourceManager, _dbContext);
+                var errorMessages = valida.Validar(model, confirmPassword);
+
+                if (errorMessages.Any())
                 {
-                    TempData["ErrorMessage"] = "As senhas não são parecidas, tente novamente.";
+                    TempData["ErrorMessage"] = string.Join("<br/>", errorMessages);
                     return View("/Views/Site/Cadastro.cshtml", model);
                 }
-
-                //senha com 6 caracteres
-                if (model.Senha.Length < 6)
-                {
-                    TempData["ErrorMessage"] = "As senhas precisam conter pelo menos 6 caracteres";
-                    return View("/Views/Site/Cadastro.cshtml", model);
-                }
-
-                //Verifica se ja existe um email parecido
-                var UsuarioExistente = _dbContext.usuarios.FirstOrDefault(u => u.Email == model.Email);
-                if (UsuarioExistente != null)
-                {
-                    TempData["ErrorMessage"] = "O E-mail digitado já esta sendo utilizado por outro usuário.";
-                    return View("/Views/Site/Cadastro.cshtml", model);
-                }
-
-                //verifica se contem caracter especial
-                if (!CaracterEspecial(model.Senha))
-                {
-                    TempData["ErrorMessage"] = "A senha precisa conter um caracterer especial EX:'@'";
-                    return View("/Views/Site/Cadastro.cshtml", model);
-                }
-
 
                 if (ModelState.IsValid)
                 {
-                    // gera nome, email e senha para jogar no BD
                     var novoUsuario = new UsuarioModel
                     {
                         Name = model.Name,
@@ -65,13 +43,9 @@ namespace testandoBancodDo0.Controllers
 
                     novoUsuario.SetSenhaHash();
 
-                    // Adiciona ao BD
                     _dbContext.usuarios.Add(novoUsuario);
-
-                    // Salva as alteração no BD
                     _dbContext.SaveChanges();
 
-                    // Redireciona para Login
                     return RedirectToAction("Login", "Site");
                 }
 
@@ -79,21 +53,9 @@ namespace testandoBancodDo0.Controllers
             }
             catch (Exception ex)
             {
-                
                 Console.WriteLine($"Erro ao cadastrar: {ex.Message}");
                 return View();
             }
         }
-
-        //funçao para caracteres especiais
-        public bool CaracterEspecial(string senha)
-        {
-            char[] caracteresEspeciais = { '@', '#', '$', '%', '&', '*', '(', ')', '[', ']', '{', '}', '!', '?' };
-            return senha.Any(c => caracteresEspeciais.Contains(c));
-        }
-
     }
 }
-
-
-
