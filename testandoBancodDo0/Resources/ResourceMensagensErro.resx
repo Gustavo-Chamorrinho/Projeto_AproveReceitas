@@ -132,6 +132,9 @@
   <data name="SENHA_QUANTIDADE" xml:space="preserve">
     <value>As senhas precisam conter pelo menos 6 caracteres.</value>
   </data>
+  <data name="SOLICITAR_ERRO" xml:space="preserve">
+    <value>Erro ao cadastrar receita.</value>
+  </data>
   <data name="USUARIO_NULO" xml:space="preserve">
     <value>As Informações digitadas estão invalidas, verifique.</value>
   </data>

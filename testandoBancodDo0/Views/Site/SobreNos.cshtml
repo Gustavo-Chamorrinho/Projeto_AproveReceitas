@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="~/css/SobreNos.css">
     <title></title>
 </head>
@@ -23,14 +23,22 @@
     </div>
     <div class="navbar">
         <div class="max-width">
-            <div class="logo"><a asp-controller="Site" asp-action="PrincipalHome">Aprove<span> Receitas</span></a></div>
+            <div class="logo"><a asp-controller="ReceitasApi" asp-action="IndexReceitas">Aprove<span> Receitas</span></a></div>
             <ul class="menu">
-                <li><a asp-controller="Site" asp-action="PrincipalHome">Inicio</a></li>
+                <li><a asp-controller="ReceitasApi" asp-action="IndexReceitas">Inicio</a></li>
                 <!--<li><a href="#teams">Receitas</a></li>-->
                 <!--<li><a asp-controller="Site" asp-action="Cadastro">Cadastro</a></li>-->
                 <li><a asp-controller="Site" asp-action="Contato">Contato</a></li>
                 <!--<li><a asp-controller="Site" asp-action="Login">Login</a></li>-->
             </ul>
+            <div class="UsuarioLogado">
+                @if (Context.Session.GetString("UserId") != null)
+                {
+                    <a asp-controller="Site" asp-action="AreaUsuario">
+                        <span style="color:white; font-size:22px;">Olá, @Context.Session.GetString("UserName")!</span>
+                    </a>
+                }
+            </div>
             <div class="menu-btn">
                 <ion-icon name="menu-outline"></ion-icon>
             </div>

@@ -25,28 +25,32 @@ namespace testandoBancodDo0.Controllers
             if (imagem == null || imagem.Length == 0)
             {
                 mensagensErro.Add(_resourceManager.GetString("SELECIONE_IMAGEM"));
-                 
+
             }
 
-            if (imagem.Length > TamanhoMaximo)
+            if (imagem?.Length > TamanhoMaximo)
             {
                 mensagensErro.Add(_resourceManager.GetString("TAMANHO_EX"));
                 
             }
 
-            var extencao = Path.GetExtension(imagem.FileName).ToLowerInvariant();
-            if (!ExtencaoPermitida.Contains(extencao) || !TiposMimePermitido.Contains(imagem.ContentType))
+            var extencao = Path.GetExtension(imagem?.FileName)?.ToLowerInvariant();
+            if (!ExtencaoPermitida.Contains(extencao) || !TiposMimePermitido.Contains(imagem?.ContentType))
             {
                 mensagensErro.Add(_resourceManager.GetString("IMAGEM_APENAS"));
-                 
             }
 
             try
             {
-                using (var stream = imagem.OpenReadStream())
+                using (var stream = imagem?.OpenReadStream())
                 {
-                    var image = Image.Load(stream);
+                    if (stream != null)
+                    {
+                        var image = Image.Load(stream);
+                    }
+                    
                 }
+
             }
             catch (UnknownImageFormatException)
             {

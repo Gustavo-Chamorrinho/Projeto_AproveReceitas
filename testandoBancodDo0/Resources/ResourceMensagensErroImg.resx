@@ -129,6 +129,9 @@
   <data name="SELECIONE_IMAGEM" xml:space="preserve">
     <value>Selecione pelo menos uma imagem.</value>
   </data>
+  <data name="SOLICITAR_NULO" xml:space="preserve">
+    <value>É necessário estar autenticado no sistema para enviar solicitações. Crie uma conta ou faça login.</value>
+  </data>
   <data name="TAMANHO_EX" xml:space="preserve">
     <value>Tamanho de arquivo excedido, escolha até 5 mb.</value>
   </data>

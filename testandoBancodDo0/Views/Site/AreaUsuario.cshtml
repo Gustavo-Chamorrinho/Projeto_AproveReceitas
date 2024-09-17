@@ -1,44 +1,220 @@
-﻿@{
-   
-}
-<!DOCTYPE html>
-<html lang="pt-br">
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Área do Usuário</title>
-    <link href="~/css/AreaUsuario.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/AreaUsuario.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #091B26;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: #091B26;
+            color: #FE9900;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+            .navbar .max-width {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 1200px;
+                margin: auto;
+            }
+
+            .navbar .logo a {
+                color: #FE9900;
+                text-decoration: none;
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+                .navbar .logo a span {
+                    color: #fff;
+                }
+
+            .navbar .menu {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+            }
+
+                .navbar .menu li {
+                    margin-left: 20px;
+                }
+
+                .navbar .menu a {
+                    color: #FE9900;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+
+                    .navbar .menu a:hover {
+                        text-decoration: underline;
+                    }
+
+        .containerUser {
+            width: 80%;
+            max-width: 1000px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background: #091B26;
+            color: #FE9900;
+            padding: 10px 20px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+        }
+
+        .profile-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+            .profile-info img {
+                border-radius: 50%;
+                width: 80px;
+                height: 80px;
+                object-fit: cover;
+            }
+
+            .profile-info h2 {
+                margin: 0;
+            }
+
+            .profile-info p {
+                margin: 5px 0;
+            }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-around;
+        }
+
+            .nav-links a {
+                text-decoration: none;
+                color: #FE9900;
+                font-weight: bold;
+            }
+
+                .nav-links a:hover {
+                    text-decoration: underline;
+                }
+
+        .logout {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .logout button {
+                background: #dc3545;
+                color: #fff;
+                border: none;
+                padding: 10px 30px;
+                border-radius: 10px;
+                cursor: pointer;
+                font-size: 15px;
+            }
+
+                .logout button:hover {
+                    background: #c82333;
+                }
+
+        .infoUser {
+            color: #FE9900;
+        }
+
+        .nomeUser {
+            color: #FE9900;
+        }
+
+        .BtnVoltarUser {
+            color: white;
+            padding: 10px 30px;
+            background-color: #091B26;
+            font-size: 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .Voltar {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
+    <div class="navbar">
+        <div class="max-width">
+            <div class="logo"><a asp-controller="Site" asp-action="PrincipalHomeAutenticado">Aprove<span> Receitas</span></a></div>
+            <ul class="menu">
+                <li><a asp-controller="Site" asp-action="PrincipalHomeAutenticado">Inicio</a></li>
+                <li><a asp-controller="Site" asp-action="SobreNos">Sobre Nós</a></li>
+                <li><a asp-controller="Site" asp-action="Contato">Contato</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="containerUser">
+        <header>
+            <h1>Área do Usuário</h1>
+        </header>
+        <div class="profile-info">
+            <div>
+                <h1 class="nomeUser">Nome do Usuário:</h1>
+                <div class="UsuarioLogado">
+                    @if (Context.Session.GetString("UserId") != null)
+                    {
+                        <h2 style="color:#FE9900; font-size:20px;">@Context.Session.GetString("UserName")</h2>
+                    }
+                </div>
 
-    <div class="container">
-        <h2>Área do Usuário</h2>
-        <div class="info">
-            <label for="nome">Nome:</label>
-            <div class="UsuarioLogado">
-                @if (Context.Session.GetString("UserId") != null)
-                {
-                    <span style="color:white; font-size:20px;">@Context.Session.GetString("UserName")</span> 
-                }
+                <h1 class="infoUser">Email:</h1>
+                <div class="UsuarioLogado">
+                    @if (Context.Session.GetString("UserId") != null)
+                    {
+                        <h2 style="color:#FE9900; font-size:20px;">@Context.Session.GetString("Email")</h2>
+                    }
+                </div>
             </div>
-            <!--<p id="nome">Fulano de Tal</p>-->
         </div>
-        <div class="info">
-            <label for="email">E-mail:</label>
-            <div class="UsuarioLogado">
-                @if(Context.Session.GetString("UserId") != null)
-                {
-                    <span style="color:white; font-size:20px;">@Context.Session.GetString("Email")</span>
-                }
+        <div class="nav-links">
+            <a href="#">Minha Conta</a>
+            <a href="#">Configurações</a>
+        </div>
+        <form action="/AutenticaLogin/Logout" method="post">
+            <div class="logout">
+                <button >Sair</button>
             </div>
-            <!--<p id="email">fulano@example.com</p>-->
-        </div>
-        <form method="post" action="/AutenticaLogin/Logout">
-            <div class="Button">
-                <button class="Btnsair" type="submit">Sair</button>
+        </form>
+        <form asp-controller="Site" asp-action="PrincipalHome">
+            <div class="Voltar">
+                <button class="BtnVoltarUser" asp-controller="Site" asp-action="PrincipalHomeAutenticado">Voltar</button>
             </div>
         </form>
     </div>
-
 </body>
 </html>

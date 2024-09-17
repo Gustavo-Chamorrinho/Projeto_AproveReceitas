@@ -1,21 +1,17 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using System.Globalization;
+using System.Net.Http.Headers;
 using System.Reflection;
 using System.Resources;
+using testandoBancodDo0.ApiServices;
 using testandoBancodDo0.Context;
 using testandoBancodDo0.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adicionar os serviços necessários
+
 builder.Services.AddControllersWithViews()
     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
     .AddDataAnnotationsLocalization();
@@ -45,6 +41,23 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+builder.Services.AddHttpClient("ApiReceitasClient", client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7142");
+    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+})
+.ConfigurePrimaryHttpMessageHandler(() =>
+{
+    var handler = new HttpClientHandler();
+    handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true; 
+    return handler;
+});
+
+builder.Services.AddScoped<ReceitasServices>();
+
+
+
+
 // Adicionar o DbContext
 builder.Services.AddDbContext<AproveDbContext>(options =>
 {
@@ -69,12 +82,17 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-// Adicionar o uso do serviço de sessão
+
 app.UseSession();
 
 // Configurar localização
 var locOptions = app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value;
 app.UseRequestLocalization(locOptions);
+
+
+app.MapControllerRoute(
+    name: "receitas",
+    pattern: "{controller=ReceitasApi}/{action=IndexReceitas}/{id?}");
 
 app.MapControllerRoute(
     name: "Cadastro",
@@ -84,8 +102,11 @@ app.MapControllerRoute(
     name: "Cadastro",
     pattern: "{controller=Cadastro}/{action=SolicitarReceita}/{id?}");
 
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Site}/{action=PrincipalHome}/{id?}");
+
+
 
 app.Run();

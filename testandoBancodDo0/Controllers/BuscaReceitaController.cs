@@ -1,18 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Resources;
-using System.Text.Json;
+using testandoBancodDo0.ApiServices;
 using testandoBancodDo0.Models;
 
 namespace testandoBancodDo0.Controllers
 {
     public class BuscaReceitaController : Controller
     {
-        private readonly IWebHostEnvironment _env;
+        private readonly ReceitasServices _receitasServices;
         private readonly ResourceManager _resourceManager;
 
-        public BuscaReceitaController(ResourceManager resourceManager, IWebHostEnvironment env)
+        public BuscaReceitaController(ReceitasServices receitasServices, ResourceManager resourceManager)
         {
-            _env = env;
+            _receitasServices = receitasServices;
             _resourceManager = resourceManager;
         }
 
@@ -22,45 +22,47 @@ namespace testandoBancodDo0.Controllers
         }
 
         [HttpPost]
-        public IActionResult Buscar(string nome)
+        public async Task<IActionResult> Buscar(string nome)
         {
-            string arquivoJson = Path.Combine(_env.WebRootPath, "data", "receitas.json");
+            var receitas = await _receitasServices.GetReceitasAsync();
 
-            if (System.IO.File.Exists(arquivoJson))
+            var resultados = receitas
+                .Where(r => r.Nome.ToLower().Contains(nome.ToLower()))
+                .ToList();
+
+            var usuarioAutenticado = HttpContext.Session.GetString("UserId");
+            if (resultados.Any())
             {
-                string ReceitaJson = System.IO.File.ReadAllText(arquivoJson);
-                var receitas = JsonSerializer.Deserialize<List<BuscaModel>>(ReceitaJson);
-
-                var resultados = receitas
-                    .Where(r => r.Nome.ToLower().Contains(nome.ToLower()))
-                    .ToList();
-                return View("~/Views/Site/PrincipalHome.cshtml", resultados);
+                if (usuarioAutenticado == null)
+                {
+                    return View("~/Views/Site/PrincipalHome.cshtml", resultados);
+                }
+                return View("~/Views/Site/PrincipalHomeAutenticado.cshtml", resultados);
             }
+
             string? ErroGeral = _resourceManager.GetString("ERRO_GERAL");
-            return NotFound(ErroGeral);
+            if (usuarioAutenticado == null)
+            {
+                return View("~/Views/Site/PrincipalHome.cshtml");
+            }
+            return View("~/Views/Site/PrincipalHomeAutenticado.cshtml");
 
         }
 
-
         [HttpGet]
-        public IActionResult Detalhes(int id)
+        public async Task<IActionResult> Detalhes(int id)
         {
-            string arquivoJson = Path.Combine(_env.WebRootPath, "data", "receitas.json");
+            var receitas = await _receitasServices.GetReceitasAsync();
 
-            if (System.IO.File.Exists(arquivoJson))
+            var receita = receitas.FirstOrDefault(r => r.Id == id);
+            var usuarioAutenticado = HttpContext.Session.GetString("UserId");
+            if (receita != null && usuarioAutenticado != null)
             {
-                string ReceitaJson = System.IO.File.ReadAllText(arquivoJson);
-                var receitas = JsonSerializer.Deserialize<List<BuscaModel>>(ReceitaJson);
-
-                var receita = receitas.FirstOrDefault(r => r.Id == id);
-                if (receita != null)
-                {
-                    return View("~/Views/Receitas/ReceitaHotDog.cshtml", receita);
-                }
+                return View("~/Views/Receitas/PrincipalHomeAutenticado.cshtml", receita);
             }
             string? ErroGeral = _resourceManager.GetString("ERRO_GERAL");
-            return NotFound(ErroGeral);
+            return View("~/Views/Site/PrincipalHome.cshtml");
+            
         }
     }
 }
-

@@ -22,6 +22,12 @@ namespace testandoBancodDo0.Controllers
         [HttpPost]
         public IActionResult SolicitarReceita([Bind("Titulo,Descricao,Ingredientes,Dificuldade,Custo,TempoPreparo,UnidadeTempo")] ReceitaModel model, IFormFile imagem)
         {
+            var usuarioAutenticado = HttpContext.Session.GetString("UserId");
+            if (usuarioAutenticado == null)
+            {
+                TempData["ErrorMessage"] = _resourceManager.GetString("SOLICITAR_NULO");
+                return View("/Views/Site/CadastraReceita.cshtml", model);
+            }
             try
             {
                 var mensagensErro = _validarImagemController.ValidarImagem(imagem);
@@ -61,16 +67,16 @@ namespace testandoBancodDo0.Controllers
                     _dbContext.receitas.Add(novaReceita);
                     _dbContext.SaveChanges();
 
-                    return RedirectToAction("PrincipalHome", "Site");
+                    return RedirectToAction("PrincipalHomeAutenticado", "Site");
                 }
 
-                TempData["ErrorMessage"] = "Erro ao cadastrar receita.";
+                TempData["ErrorMessage"] = _resourceManager.GetString("SOLICITAR_ERRO");
                 return View("/Views/Site/CadastraReceita.cshtml", model);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Erro ao cadastrar: {ex.Message}");
-                TempData["ErrorMessage"] = "Erro ao cadastrar receita.";
+                TempData["ErrorMessage"] = _resourceManager.GetString("SOLICITAR_ERRO");
                 return View();
             }
         }

@@ -3,16 +3,17 @@
 *@
 @{
 }
-@model BuscaModel
+@model testandoBancodDo0.Models.ReceitasModel
 <!doctype html>
 <html lang="pt-br">
 <head>
     <script src="https://kit.fontawesome.com/6f925b0522.js" crossorigin="anonymous"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@Model.Nome</title>
+    <title>@Model?.Nome</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/Receitas.css">
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <!-- topo-->
@@ -47,12 +48,12 @@
     <div class="separador"></div>
     <!--BODY-->
 
-    <h1 id="titulo">@Model.Nome</h1>
+    <h1 id="titulo">@Model?.Nome</h1>
     <div class="separador"></div>
     <br>
     <div class="recipe" id="recipe2">
         <div class="imageCont">
-            <img src="@Model.ImagemWeb" alt="Imagem 1" class="image">
+            <img src="@Model?.UrlImagem" alt="Imagem 1" class="image">
             <br>
             <i class="favorite fa-solid fa-heart" data-recipe="2"></i> <!-- Ícone de coração -->
             <i class="share fa-regular fa-share-from-square"></i>
@@ -69,12 +70,12 @@
     <div class="separador"></div>
     <div class="ingredientes">
         <h2>Ingredientes</h2>
-        @foreach (var ingredientes in Model.Ingredientes)
+        @if (Model?.Ingredientes != null && Model.Ingredientes.Any())
         {
-            <p>
-                @ingredientes
-                <br>
-            </p>
+            foreach (var instruction in Model.Ingredientes)
+            {
+                <p>@instruction</p>
+            }
         }
 
     </div>
@@ -110,7 +111,7 @@
         <h2>Modo de Preparo</h2>
 
 
-        <p>@Model.Instrucoes</p>
+        @Model?.Instrucoes
 
 
     </div>

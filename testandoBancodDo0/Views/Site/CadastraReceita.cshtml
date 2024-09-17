@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="~/css/CadastraReceita.css">
     <title>Cadastro</title>
 
@@ -24,9 +24,9 @@
     </div>
     <div class="navbar">
         <div class="max-width">
-            <div class="logo"><a asp-controller="Site" asp-action="PrincipalHome">Aprove<span> Receitas</span></a></div>
+            <div class="logo"><a asp-controller="ReceitasApi" asp-action="IndexReceitas">Aprove<span> Receitas</span></a></div>
             <ul class="menu">
-                <li><a asp-controller="Site" asp-action="PrincipalHome">Inicio</a></li>
+                <li><a asp-controller="ReceitasApi" asp-action="IndexReceitas">Inicio</a></li>
                 <li><a asp-controller="Site" asp-action="SobreNos">Sobre Nós</a></li>
                 <!--<li><a href="index.html#teams">Receitas</a></li>-->
                 <!--<li><a href="cadastro.html">Cadastro</a></li>-->
@@ -74,7 +74,7 @@
 
                         <div>
                             <label for="dificuldade">Dificuldade*</label>
-                            <select id="dificuldade" name="Dificuldade">
+                            <select id="dificuldade" name="Dificuldade" required>
                                 <option value="facil">Fácil</option>
                                 <option value="medio">Médio</option>
                                 <option value="dificil">Difícil</option>
@@ -83,7 +83,7 @@
 
                         <div>
                             <label for="custo">Custo*</label>
-                            <select id="custo" name="Custo">
+                            <select id="custo" name="Custo" required>
                                 <option value="baixo">Baixo</option>
                                 <option value="medio">Médio</option>
                                 <option value="alto">Alto</option>
@@ -92,8 +92,8 @@
                     </div>
                     <div>
                         <label for="tempo">Tempo de Preparo*</label>
-                        <input type="number" id="tempo" name="TempoPreparo" min="1">
-                        <select id="temp" name="temp">
+                        <input type="number" id="tempo" name="TempoPreparo" min="1" required>
+                        <select id="temp" name="temp" required>
                             <option value="porc">Minutos</option>
                             <option value="medio">Horas</option>
                         </select>
@@ -101,8 +101,8 @@
 
                     <div>
                         <label for="porcoes">Quantidade*</label>
-                        <input type="number" id="porcoes" name="UnidadeTempo" min="1">
-                        <select id="porcao" name="porcao">
+                        <input type="number" id="porcoes" name="UnidadeTempo" min="1" required>
+                        <select id="porcao" name="porcao" required>
                             <option value="porc">Porção</option>
                             <option value="medio">Pedaço</option>
                             <option value="alto">Prato</option>

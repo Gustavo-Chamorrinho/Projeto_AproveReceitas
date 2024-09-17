@@ -42,7 +42,7 @@ namespace testandoBancodDo0.Controllers
                         string? UsuarioLogado = HttpContext.Session.GetString("UserName");
                         ViewBag.UserName = UsuarioLogado;
 
-                        return RedirectToAction("PrincipalHome", "Site");
+                        return RedirectToAction("IndexReceitas", "ReceitasApi");
                     }
                     else
                     {
@@ -57,7 +57,7 @@ namespace testandoBancodDo0.Controllers
             {
                 Console.WriteLine($"Erro ao fazer login: {ex.Message}");
                 string? ErroGeral = _resourceManager.GetString("ERRO_GERAL");
-                return NotFound(ErroGeral);
+                return View("~/Views/Site/Login.cshtml", model);
             }
         }
 
@@ -65,7 +65,7 @@ namespace testandoBancodDo0.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Login", "Site");
+            return RedirectToAction("PrincipalHome", "Site");
         }
     }
 }
